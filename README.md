@@ -1,20 +1,14 @@
 # cub3d
-### I never thought philosophy would be so deadly
+### My first RayCaster with miniLibX
 <br/><br/><br/>
 
 ## Summary
-#### In this project, you will learn the basics of threading a process. You will see how to create threads and you will discover mutexes.
+#### This project is inspired by the world-famous Wolfenstein 3D game, which was the first FPS ever. It will enable you to explore ray-casting. Your goal will be to make a dynamic view inside a maze, in which you’ll have to find your way.
 <br/><br/><br/>
 
 ## Install
 	$ make (all)
-* Mandatory in directory &nbsp;&nbsp;**philo/**
-* Bonus in directory &nbsp;&nbsp;**philo_bonus/**
 <br/><br/><br/>
 
 ## Usage
-### Arguments must be natural number.
-### Mandatory
-	$ ./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [number_of_times_each_philosopher_must_eat]
-### Bonus
-	$ ./philo_bonus <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [number_of_times_each_philosopher_must_eat]
+	$ ./cub3d
