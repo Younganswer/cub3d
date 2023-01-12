@@ -24,7 +24,10 @@ LDFLAGS	= -L${LIBFT_DIR} -lft -L${GNL_DIR} -lgnl
 AR		= ar rcs
 RM		= rm -f
 
-SRCS = 	cub3d.c
+SRCS = 	cub3d.c \
+		parse/parse.c \
+		parse/parse_map.c \
+		parse/parse_texture.c 
 		
 SRCS := ${addprefix ${SRCS_DIR}/, ${SRCS}}
 OBJS := ${SRCS:${SRCS_DIR}/%.c=${OBJS_DIR}/%.o}
@@ -37,6 +40,7 @@ all: ${NAME}
 ${OBJS_DIR}:
 	@echo "Build ${NAME}"
 	@mkdir -p ${OBJS_DIR}
+	@mkdir -p ${OBJS_DIR}/parse
 
 
 ${LIBFT}:
