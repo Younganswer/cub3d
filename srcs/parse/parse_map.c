@@ -1,20 +1,24 @@
 #include "../../incs/parse.h"
-#include "../../libs/libgnl/incs/get_next_line.h"
+#include <stdlib.h>
 
 t_bool	parse_map(t_var *var, int fd);
 
 t_bool	parse_map(t_var *var, int fd)
 {
 	char	*line;
+	char	*row;
 
 	while (TRUE)
 	{
-		line = get_next_line(fd);
+		line = read_line(fd);
 		if (line == NULL)
 			break ;
 		if (ft_strrchr(line, '\n') != NULL)
-			*ft_strrchr(line, '\n') = '\0';
-		ft_lstadd_back(&var->map, ft_lstnew(line));
+			row = ft_substr(line, 0, ft_strlen(line) - 1);
+		else
+			row = ft_strdup(line);
+		ft_lstadd_back(&var->map, ft_lstnew(row));
+		free(line);
 	}
 	return (TRUE);
 }

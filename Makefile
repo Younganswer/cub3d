@@ -26,6 +26,7 @@ RM		= rm -f
 
 SRCS = 	cub3d.c \
 		parse/parse.c \
+		parse/parse_floor_ceiling.c \
 		parse/parse_map.c \
 		parse/parse_texture.c 
 		

@@ -18,7 +18,7 @@ typedef struct	s_var
 	t_list		*map;
 	t_texture	*texture;
 	t_color		floor;
-	t_color		ceil;
+	t_color		ceiling;
 }	t_var;
 
 #endif

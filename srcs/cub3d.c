@@ -1,15 +1,19 @@
-#include <stdio.h>
 #include "../incs/structs.h"
 #include "../incs/parse.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 static t_bool	init_var(t_var *var, char *file);
+
+static t_bool	print_var(t_var *var);
+static t_bool	print_texture(t_var *var);
+static t_bool	print_floor_ceiling(t_var *var);
 static t_bool	print_map(t_var *var);
 
 int	main(int argc, char **argv)
 {
-	t_var	*var;
+	t_var *const	var = ft_calloc(sizeof(t_var), 1, "");
 
-	var = NULL;
 	if (argc != 2)
 	{
 		printf("Usage: ./cub3d mapfile.cub\n");
@@ -25,10 +29,33 @@ int	main(int argc, char **argv)
 
 static t_bool	init_var(t_var *var, char *file)
 {
-	var = ft_calloc(sizeof(t_var), 1, "");
 	if (parse(var, file) == FALSE)
 		return (FALSE);
+	print_var(var);
+	return (TRUE);
+}
+
+static t_bool	print_var(t_var *var)
+{
+	print_texture(var);
+	print_floor_ceiling(var);
 	print_map(var);
+	return (TRUE);
+}
+
+static t_bool	print_texture(t_var *var)
+{
+	printf("NORTH: %s\n", var->texture[0].path);
+	printf("SOUTH: %s\n", var->texture[1].path);
+	printf("WEST: %s\n", var->texture[2].path);
+	printf("EAST: %s\n", var->texture[3].path);
+	return (TRUE);
+}
+
+static t_bool	print_floor_ceiling(t_var *var)
+{
+	printf("FLOOR: (%d, %d, %d)\n", var->floor.color[0], var->floor.color[1], var->floor.color[2]);
+	printf("CEILING: (%d, %d, %d)\n", var->ceiling.color[0], var->ceiling.color[1], var->ceiling.color[2]);
 	return (TRUE);
 }
 
