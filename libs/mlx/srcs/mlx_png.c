@@ -11,7 +11,7 @@
 
 #include "zlib.h"
 
-#include "mlx.h"
+#include "../incs/mlx.h"
 
 #define UNIQ_BPP 4
 

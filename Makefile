@@ -15,8 +15,10 @@ GNL_INCS_DIR	:= ${GNL_DIR}/incs
 GNL				:= ${GNL_DIR}/libgnl.a
 
 MLX_DIR			:= ${LIBS_DIR}/mlx
-MLX_INCS_DIR	:= ${MLX_DIR}
+MLX_INCS_DIR	:= ${MLX_DIR}/incs
 MLX				:= ${MLX_DIR}/libmlx.dylib
+
+LIBS			:= ${LIBFT} ${GNL} ${MLX}
 
 INCS_DIR	= ./incs
 SRCS_DIR	= ./srcs
@@ -60,7 +62,7 @@ ${MLX}:
 	@make -C ${MLX_DIR}
 
 
-${NAME}: ${LIBFT} ${GNL} ${MLX} ${OBJS}
+${NAME}: ${LIBS} ${OBJS}
 	@printf "\bdone\n"
 	@${CC} ${LDFLAGS} -g -o ${NAME} ${OBJS}
 	@echo "Build ${NAME}: done"
