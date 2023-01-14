@@ -26,7 +26,7 @@ OBJS_DIR	= ./objs
 
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -I${INCS_DIR} -I${LIBFT_INCS_DIR} -I${GNL_INCS_DIR} -I${MLX_INCS_DIR} -MD -O3
-LDFLAGS	= -L${LIBFT_DIR} -lft -L${GNL_DIR} -lgnl -L${MLX_DIR} -lmlx -framework OpenGL -framework AppKit
+LDFLAGS	= -L${LIBFT_DIR} -lft -L${GNL_DIR} -lgnl -Wl,-rpath,${MLX_DIR} -framework OpenGL -framework AppKit
 AR		= ar rcs
 RM		= rm -f
 
