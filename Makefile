@@ -14,13 +14,17 @@ GNL_DIR			:= ${LIBS_DIR}/libgnl
 GNL_INCS_DIR	:= ${GNL_DIR}/incs
 GNL				:= ${GNL_DIR}/libgnl.a
 
+MLX_DIR			:= ${LIBS_DIR}/mlx
+MLX_INCS_DIR	:= ${MLX_DIR}
+MLX				:= ${MLX_DIR}/libmlx.dylib
+
 INCS_DIR	= ./incs
 SRCS_DIR	= ./srcs
 OBJS_DIR	= ./objs
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -I${INCS_DIR} -I${LIBFT_INCS_DIR} -I${GNL_INCS_DIR} -MD
-LDFLAGS	= -L${LIBFT_DIR} -lft -L${GNL_DIR} -lgnl
+CFLAGS	= -Wall -Wextra -Werror -I${INCS_DIR} -I${LIBFT_INCS_DIR} -I${GNL_INCS_DIR} -I${MLX_INCS_DIR} -MD -O3
+LDFLAGS	= -L${LIBFT_DIR} -lft -L${GNL_DIR} -lgnl -L${MLX_DIR} -lmlx -framework OpenGL -framework AppKit
 AR		= ar rcs
 RM		= rm -f
 
@@ -52,9 +56,12 @@ ${GNL}:
 	@make -C ${GNL_DIR}
 
 
-${NAME}: ${LIBFT} ${GNL} ${OBJS}
+${MLX}:
+	@make -C ${MLX_DIR}
+
+
+${NAME}: ${LIBFT} ${GNL} ${MLX} ${OBJS}
 	@printf "\bdone\n"
-	${eval IDX = 0}
 	@${CC} ${LDFLAGS} -g -o ${NAME} ${OBJS}
 	@echo "Build ${NAME}: done"
 
@@ -75,6 +82,7 @@ clean:
 	@echo "Remove dependencies in ${NAME}"
 	@make -C ${LIBFT_DIR} clean
 	@make -C ${GNL_DIR} clean
+	@make -C ${MLX_DIR} clean
 	@rm -rf ${OBJS_DIR}
 
 
@@ -82,6 +90,7 @@ fclean:
 	@echo "Remove dependencies in ${NAME}"
 	@make -C ${LIBFT_DIR} fclean
 	@make -C ${GNL_DIR} fclean
+	@make -C ${MLX_DIR} fclean
 	@echo "Remove ${NAME}"
 	@rm -rf ${OBJS_DIR}
 	@${RM} ${NAME}
