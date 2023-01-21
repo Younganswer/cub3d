@@ -10,7 +10,7 @@ t_bool	parse_map(t_game *var, int fd)
 
 	while (TRUE)
 	{
-		line = read_line(fd);
+		line = get_next_line_which_is_not_empty(fd);
 		if (line == NULL)
 			break ;
 		if (ft_strrchr(line, '\n') != NULL)

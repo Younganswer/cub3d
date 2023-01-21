@@ -6,7 +6,7 @@
 
 // parse.c
 t_bool	parse(t_game *var, char *file);
-char	*read_line(int fd);
+char	*get_next_line_which_is_not_empty(int fd);
 
 // parse_floor_ceil.c
 t_bool	parse_floor_ceiling(t_game *var, int fd);

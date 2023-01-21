@@ -14,7 +14,7 @@ t_bool	parse_floor_ceiling(t_game *var, int fd)
 	i = 0;
 	while (i < 2)
 	{
-		line = read_line(fd);
+		line = get_next_line_which_is_not_empty(fd);
 		if (line == NULL)
 			return (FALSE);
 		if (*line == 'F')

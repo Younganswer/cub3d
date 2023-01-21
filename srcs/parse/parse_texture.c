@@ -26,7 +26,7 @@ static t_bool	set_texture_file(t_texture *texture, int fd)
 	i = 0;
 	while (i < 4)
 	{
-		line = read_line(fd);
+		line = get_next_line_which_is_not_empty(fd);
 		if (line == NULL)
 			return (FALSE);
 		idx = get_idx(line);
