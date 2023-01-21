@@ -6,18 +6,18 @@ static const char	*g_direction[] = {
 };
 
 t_bool			parse_texture(t_var *var, int fd);
-static t_bool	set_texture_path(t_texture *texture, int fd);
+static t_bool	set_texture_file(t_texture *texture, int fd);
 static int		get_idx(char *dir);
 
 t_bool	parse_texture(t_var *var, int fd)
 {
 	var->texture = ft_calloc(sizeof(t_texture), 4, "");
-	if (set_texture_path(var->texture, fd) == FALSE)
+	if (set_texture_file(var->texture, fd) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
 
-static t_bool	set_texture_path(t_texture *texture, int fd)
+static t_bool	set_texture_file(t_texture *texture, int fd)
 {
 	size_t	i;
 	int		idx;
@@ -31,7 +31,7 @@ static t_bool	set_texture_path(t_texture *texture, int fd)
 			return (FALSE);
 		idx = get_idx(line);
 		if (0 <= idx)
-			texture[idx].path = ft_substr(line + 3, 0, ft_strlen(line + 3) - 1);
+			texture[idx].file = ft_substr(line + 3, 0, ft_strlen(line + 3) - 1);
 		free(line);
 		if (idx == -1)
 			return (FALSE);

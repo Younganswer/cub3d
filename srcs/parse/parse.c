@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 t_bool	parse(t_var *var, char *file);
 char	*read_line(int fd);
@@ -15,12 +16,12 @@ t_bool	parse(t_var *var, char *file)
 	if (fd == -1)
 		return (FALSE);
 	ret = TRUE;
-	if (ret == TRUE && parse_texture(var, fd) == FALSE)
-		ret = FALSE;
-	if (ret == TRUE && parse_floor_ceiling(var, fd) == FALSE)
-		ret = FALSE;
-	if (ret == TRUE && parse_map(var, fd) == FALSE)
-		ret = FALSE;
+	if (parse_texture(var, fd) == FALSE)
+		ret = (printf("Error: Failed to parse texture") < 0);
+	else if (parse_floor_ceiling(var, fd) == FALSE)
+		ret = (printf("Error: Failed to parse floor and ceiling color") < 0);
+	else if (parse_map(var, fd) == FALSE)
+		ret = (printf("Error: Failed to parse map") < 0);
 	close(fd);
 	return (ret);
 }

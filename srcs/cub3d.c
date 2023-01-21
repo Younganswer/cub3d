@@ -45,10 +45,10 @@ static t_bool	print_var(t_var *var)
 
 static t_bool	print_texture(t_var *var)
 {
-	printf("NORTH: %s\n", var->texture[0].path);
-	printf("SOUTH: %s\n", var->texture[1].path);
-	printf("WEST: %s\n", var->texture[2].path);
-	printf("EAST: %s\n", var->texture[3].path);
+	printf("NORTH: %s\n", var->texture[0].file);
+	printf("SOUTH: %s\n", var->texture[1].file);
+	printf("WEST: %s\n", var->texture[2].file);
+	printf("EAST: %s\n", var->texture[3].file);
 	return (TRUE);
 }
 

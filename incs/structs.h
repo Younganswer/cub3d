@@ -5,7 +5,7 @@
 
 typedef struct	s_texture
 {
-	char	*path;
+	char	*file;
 }	t_texture;
 
 typedef struct	s_color
