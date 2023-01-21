@@ -5,11 +5,11 @@ static const char	*g_direction[] = {
 	"NO", "SO", "WE", "EA", NULL
 };
 
-t_bool			parse_texture(t_var *var, int fd);
+t_bool			parse_texture(t_game *var, int fd);
 static t_bool	set_texture_file(t_texture *texture, int fd);
 static int		get_idx(char *dir);
 
-t_bool	parse_texture(t_var *var, int fd)
+t_bool	parse_texture(t_game *var, int fd)
 {
 	var->texture = ft_calloc(sizeof(t_texture), 4, "");
 	if (set_texture_file(var->texture, fd) == FALSE)

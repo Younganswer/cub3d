@@ -4,7 +4,7 @@ IDX		= 0
 
 NAME	= cub3d
 
-LIBS_DIR		= ./libs
+LIBS_DIR		= libs
 
 LIBFT_DIR		:= ${LIBS_DIR}/libft
 LIBFT_INCS_DIR	:= ${LIBFT_DIR}/incs
@@ -20,13 +20,13 @@ MLX				:= ${MLX_DIR}/libmlx.dylib
 
 LIBS			:= ${LIBFT} ${GNL} ${MLX}
 
-INCS_DIR	= ./incs
-SRCS_DIR	= ./srcs
-OBJS_DIR	= ./objs
+INCS_DIR	= incs
+SRCS_DIR	= srcs
+OBJS_DIR	= objs
 
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -I${INCS_DIR} -I${LIBFT_INCS_DIR} -I${GNL_INCS_DIR} -I${MLX_INCS_DIR} -MD -O3
-LDFLAGS	= -L${LIBFT_DIR} -lft -L${GNL_DIR} -lgnl -Wl,-rpath,${MLX_DIR} -framework OpenGL -framework AppKit
+LDFLAGS	= -L${LIBFT_DIR} -lft -L${GNL_DIR} -lgnl -Wl,-rpath,${MLX_DIR} -lmlx -framework OpenGL -framework AppKit
 AR		= ar rcs
 RM		= rm -f
 
@@ -34,7 +34,8 @@ SRCS = 	cub3d.c \
 		parse/parse.c \
 		parse/parse_floor_ceiling.c \
 		parse/parse_map.c \
-		parse/parse_texture.c 
+		parse/parse_texture.c \
+		game/init_game.c
 		
 SRCS := ${addprefix ${SRCS_DIR}/, ${SRCS}}
 OBJS := ${SRCS:${SRCS_DIR}/%.c=${OBJS_DIR}/%.o}
@@ -48,6 +49,7 @@ ${OBJS_DIR}:
 	@echo "Build ${NAME}"
 	@mkdir -p ${OBJS_DIR}
 	@mkdir -p ${OBJS_DIR}/parse
+	@mkdir -p ${OBJS_DIR}/game
 
 
 ${LIBFT}:
@@ -64,7 +66,7 @@ ${MLX}:
 
 ${NAME}: ${LIBS} ${OBJS}
 	@printf "\bdone\n"
-	@${CC} ${LDFLAGS} -g -o ${NAME} ${OBJS}
+	${CC} ${LDFLAGS} -g -o ${NAME} ${OBJS}
 	@echo "Build ${NAME}: done"
 
 

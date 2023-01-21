@@ -1,11 +1,11 @@
 #include "../../incs/parse.h"
 #include <stdlib.h>
 
-t_bool			parse_floor_ceiling(t_var *var, int fd);
+t_bool			parse_floor_ceiling(t_game *var, int fd);
 static t_bool	set_color(int color[3], char *line);
 static t_bool	del_string(char **str);
 
-t_bool	parse_floor_ceiling(t_var *var, int fd)
+t_bool	parse_floor_ceiling(t_game *var, int fd)
 {
 	t_bool	ret;
 	size_t	i;

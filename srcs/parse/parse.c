@@ -5,10 +5,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-t_bool	parse(t_var *var, char *file);
+t_bool	parse(t_game *var, char *file);
 char	*read_line(int fd);
 
-t_bool	parse(t_var *var, char *file)
+t_bool	parse(t_game *var, char *file)
 {
 	const int	fd = open(file, O_RDONLY);
 	t_bool		ret;

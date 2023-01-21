@@ -1,9 +1,9 @@
 #include "../../incs/parse.h"
 #include <stdlib.h>
 
-t_bool	parse_map(t_var *var, int fd);
+t_bool	parse_map(t_game *var, int fd);
 
-t_bool	parse_map(t_var *var, int fd)
+t_bool	parse_map(t_game *var, int fd)
 {
 	char	*line;
 	char	*row;
