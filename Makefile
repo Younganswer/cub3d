@@ -26,7 +26,7 @@ OBJS_DIR	= objs
 
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -I${INCS_DIR} -I${LIBFT_INCS_DIR} -I${LIBGNL_INCS_DIR} -I${LIBMLX_INCS_DIR} -MD -O3
-LDFLAGS	= -L${LIBFT_DIR} -lft -L${LIBGNL_DIR} -lgnl -L${LIBMLX_DIR} -lmlx -Wl,-rpath,${shell pwd}/${LIBMLX_DIR} -framework OpenGL -framework AppKit
+LDFLAGS	= -L${LIBFT_DIR} -lft -L${LIBGNL_DIR} -lgnl -L${LIBMLX_DIR} -lmlx -framework OpenGL -framework AppKit
 AR		= ar rcs
 RM		= rm -f
 
@@ -67,6 +67,7 @@ ${LIBMLX}:
 ${NAME}: ${LIBS} ${OBJS}
 	@printf "\bdone\n"
 	@${CC} ${LDFLAGS} -g -o ${NAME} ${OBJS}
+	@install_name_tool -change libmlx.dylib @executable_path/${LIBMLX_DIR}/libmlx.dylib ${NAME}
 	@echo "Build ${NAME}: done"
 
 
