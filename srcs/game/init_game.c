@@ -1,6 +1,6 @@
 #include "../../incs/game.h"
 #include "../../incs/parse.h"
-#include "../../libs/mlx/incs/mlx.h"
+#include "../../libs/libmlx/incs/mlx.h"
 
 t_bool	init_game(t_game *game, char *file);
 

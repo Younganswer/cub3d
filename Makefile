@@ -10,23 +10,23 @@ LIBFT_DIR		:= ${LIBS_DIR}/libft
 LIBFT_INCS_DIR	:= ${LIBFT_DIR}/incs
 LIBFT			:= ${LIBFT_DIR}/libft.a
 
-GNL_DIR			:= ${LIBS_DIR}/libgnl
-GNL_INCS_DIR	:= ${GNL_DIR}/incs
-GNL				:= ${GNL_DIR}/libgnl.a
+LIBGNL_DIR		:= ${LIBS_DIR}/libgnl
+LIBGNL_INCS_DIR	:= ${LIBGNL_DIR}/incs
+LIBGNL			:= ${LIBGNL_DIR}/libgnl.a
 
-MLX_DIR			:= ${LIBS_DIR}/mlx
-MLX_INCS_DIR	:= ${MLX_DIR}/incs
-MLX				:= ${MLX_DIR}/libmlx.dylib
+LIBMLX_DIR		:= ${LIBS_DIR}/libmlx
+LIBMLX_INCS_DIR	:= ${LIBMLX_DIR}/incs
+LIBMLX			:= ${LIBMLX_DIR}/libmlx.dylib
 
-LIBS			:= ${LIBFT} ${GNL} ${MLX}
+LIBS			:= ${LIBFT} ${LIBGNL} ${LIBMLX}
 
 INCS_DIR	= incs
 SRCS_DIR	= srcs
 OBJS_DIR	= objs
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -I${INCS_DIR} -I${LIBFT_INCS_DIR} -I${GNL_INCS_DIR} -I${MLX_INCS_DIR} -MD -O3
-LDFLAGS	= -L${LIBFT_DIR} -lft -L${GNL_DIR} -lgnl -L${MLX_DIR} -lmlx -framework OpenGL -framework AppKit
+CFLAGS	= -Wall -Wextra -Werror -I${INCS_DIR} -I${LIBFT_INCS_DIR} -I${LIBGNL_INCS_DIR} -I${LIBMLX_INCS_DIR} -MD -O3
+LDFLAGS	= -L${LIBFT_DIR} -lft -L${LIBGNL_DIR} -lgnl -L${LIBMLX_DIR} -lmlx -Wl,-rpath,${shell pwd}/${LIBMLX_DIR} -framework OpenGL -framework AppKit
 AR		= ar rcs
 RM		= rm -f
 
@@ -56,12 +56,12 @@ ${LIBFT}:
 	@make -C ${LIBFT_DIR}
 
 
-${GNL}:
-	@make -C ${GNL_DIR}
+${LIBGNL}:
+	@make -C ${LIBGNL_DIR}
 
 
-${MLX}:
-	@make -C ${MLX_DIR}
+${LIBMLX}:
+	@make -C ${LIBMLX_DIR}
 
 
 ${NAME}: ${LIBS} ${OBJS}
@@ -85,16 +85,16 @@ ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c | ${OBJS_DIR}
 clean:
 	@echo "Remove dependencies in ${NAME}"
 	@make -C ${LIBFT_DIR} clean
-	@make -C ${GNL_DIR} clean
-	@make -C ${MLX_DIR} clean
+	@make -C ${LIBGNL_DIR} clean
+	@make -C ${LIBMLX_DIR} clean
 	@rm -rf ${OBJS_DIR}
 
 
 fclean:
 	@echo "Remove dependencies in ${NAME}"
 	@make -C ${LIBFT_DIR} fclean
-	@make -C ${GNL_DIR} fclean
-	@make -C ${MLX_DIR} fclean
+	@make -C ${LIBGNL_DIR} fclean
+	@make -C ${LIBMLX_DIR} fclean
 	@echo "Remove ${NAME}"
 	@rm -rf ${OBJS_DIR}
 	@${RM} ${NAME}
