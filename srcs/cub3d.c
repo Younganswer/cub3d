@@ -1,10 +1,11 @@
+#include "../libs/libmlx/incs/mlx.h"
 #include "../incs/structs.h"
 #include "../incs/parse.h"
 #include "../incs/game.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-static t_bool	print_game(t_game *game);
+static int		print_game(int key, t_game *game);
 static t_bool	print_texture(t_game *game);
 static t_bool	print_floor_ceiling(t_game *game);
 static t_bool	print_map(t_game *game);
@@ -17,12 +18,14 @@ int	main(int argc, char **argv)
 		return (0 < ft_putendl_fd("Usage: ./cub3d mapfile.cub", 1));
 	if (init_game(game, argv[1]) == FALSE)
 		ft_exit_with_error("Error: Failed to initialize game", 1);
-	print_game(game);
+	mlx_hook(game->window, 2, 0, print_game, game);
+	mlx_loop(game->mlx);
 	return (0);
 }
 
-static t_bool	print_game(t_game *game)
+static int	print_game(int key, t_game *game)
 {
+	(void) key;
 	print_texture(game);
 	print_floor_ceiling(game);
 	print_map(game);
