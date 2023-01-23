@@ -31,11 +31,15 @@ AR		= ar rcs
 RM		= rm -f
 
 SRCS = 	cub3d.c \
+		game/init_game.c \
+		game/exit_game.c \
+		game/key_pressed.c \
 		parse/parse.c \
 		parse/parse_floor_ceiling.c \
 		parse/parse_map.c \
 		parse/parse_texture.c \
-		game/init_game.c
+		raycast/raycast.c \
+		render/render.c
 		
 SRCS := ${addprefix ${SRCS_DIR}/, ${SRCS}}
 OBJS := ${SRCS:${SRCS_DIR}/%.c=${OBJS_DIR}/%.o}
@@ -48,8 +52,10 @@ all: ${NAME}
 ${OBJS_DIR}:
 	@echo "Build ${NAME}"
 	@mkdir -p ${OBJS_DIR}
-	@mkdir -p ${OBJS_DIR}/parse
 	@mkdir -p ${OBJS_DIR}/game
+	@mkdir -p ${OBJS_DIR}/parse
+	@mkdir -p ${OBJS_DIR}/raycast
+	@mkdir -p ${OBJS_DIR}/render
 
 
 ${LIBFT}:

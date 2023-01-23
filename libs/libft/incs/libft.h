@@ -74,5 +74,6 @@ t_bool			ft_strcat(char **dest, const char *src);
 t_bool			ft_strncat(char **dest, const char *src, size_t n);
 t_bool			ft_strappend(char ***dest, const char *src);
 t_bool			ft_swap(void **a, void **b);
+int				ft_lstindex(t_list *lst, void *content);
 
 #endif
