@@ -18,8 +18,8 @@ int	main(int argc, char **argv)
 		return (0 < ft_putendl_fd("Usage: ./cub3d mapfile.cub", 1));
 	if (init_game(game, argv[1]) == FALSE)
 		ft_exit_with_error("Error: Failed to initialize game", 1);
-	mlx_hook(game->window, 2, 0, print_game, game);
-	mlx_loop(game->mlx);
+	mlx_hook(game->mlx->window, 2, 0, print_game, game);
+	mlx_loop(game->mlx->mlx);
 	return (0);
 }
 
@@ -34,17 +34,17 @@ static int	print_game(int key, t_game *game)
 
 static t_bool	print_texture(t_game *game)
 {
-	printf("NORTH: %s\n", game->texture[0].file);
-	printf("SOUTH: %s\n", game->texture[1].file);
-	printf("WEST: %s\n", game->texture[2].file);
-	printf("EAST: %s\n", game->texture[3].file);
+	printf("NORTH: %s\n", game->space->walls[0].file);
+	printf("SOUTH: %s\n", game->space->walls[1].file);
+	printf("WEST: %s\n", game->space->walls[2].file);
+	printf("EAST: %s\n", game->space->walls[3].file);
 	return (TRUE);
 }
 
 static t_bool	print_floor_ceiling(t_game *game)
 {
-	printf("FLOOR: (%d, %d, %d)\n", game->floor.color[0], game->floor.color[1], game->floor.color[2]);
-	printf("CEILING: (%d, %d, %d)\n", game->ceiling.color[0], game->ceiling.color[1], game->ceiling.color[2]);
+	printf("FLOOR: (%lu, %lu, %lu)\n", game->space->floor_color >> 16 & 0xFF, (game->space->floor_color >> 8) & 0xFF, game->space->floor_color & 0xFF);
+	printf("CEILING: (%lu, %lu, %lu)\n", game->space->ceiling_color >> 16 & 0xFF, (game->space->ceiling_color >> 8) & 0xFF, game->space->ceiling_color & 0xFF);
 	return (TRUE);
 }
 

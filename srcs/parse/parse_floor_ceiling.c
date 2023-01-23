@@ -1,50 +1,50 @@
 #include "../../incs/parse.h"
 #include <stdlib.h>
 
-t_bool			parse_floor_ceiling(t_game *var, int fd);
-static t_bool	set_color(int color[3], char *line);
+t_bool			parse_floor_ceiling(t_space *space, int fd);
+static t_bool	set_color(size_t *color, char *line);
 static t_bool	del_string(char **str);
 
-t_bool	parse_floor_ceiling(t_game *var, int fd)
+t_bool	parse_floor_ceiling(t_space *space, int fd)
 {
 	t_bool	ret;
 	size_t	i;
 	char	*line;
 
 	i = 0;
-	while (i < 2)
+	while (i++ < 2)
 	{
 		line = get_next_line_which_is_not_empty(fd);
 		if (line == NULL)
 			return (FALSE);
 		if (*line == 'F')
-			ret = set_color(var->floor.color, line + 2);
+			ret = set_color(&space->floor_color, line + 2);
 		else if (*line == 'C')
-			ret = set_color(var->ceiling.color, line + 2);
+			ret = set_color(&space->ceiling_color, line + 2);
 		else
 			ret = FALSE;
 		free(line);
 		if (ret == FALSE)
 			return (FALSE);
-		i++;
 	}
 	return (TRUE);
 }
 
-static t_bool	set_color(int color[3], char *line)
+static t_bool	set_color(size_t *color, char *line)
 {
 	char **const	rgb = ft_split(line, ',');
 	size_t			i;
+	int				c;
 
 	if (rgb == NULL)
 		return (FALSE);
 	i = 0;
 	while (i < 3)
 	{
-		color[i] = ft_atoi(rgb[i]);
-		if (color[i] < 0 || 255 < color[i])
+		c = ft_atoi(rgb[i++]);
+		if (c < 0 || 255 < c)
 			return (del_string(rgb) == FALSE);
-		i++;
+		*color = (*color << 8) + c;
 	}
 	return (del_string(rgb) == TRUE);
 }
