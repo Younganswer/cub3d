@@ -3,8 +3,8 @@
 #include "../../libs/libmlx/incs/mlx.h"
 
 static const char	*g_dir = "NSWE";
-static const int	*g_dx = (int []){-1, 1, 0, 0};
-static const int	*g_dy = (int []){0, 0, -1, 1};
+static const double	*g_dx = (double []){-1.0, 1.0, 0.0, 0.0};
+static const double	*g_dy = (double []){0.0, 0.0, -1.0, 1.0};
 
 t_bool			init_game(t_game *game, char *file);
 static t_bool	init_mlx(t_game *game);
@@ -72,7 +72,7 @@ static t_bool	init_player(t_game *game)
 				continue ;
 			game->player->pos = (t_coord){row, col - game->worldmap->map[row]};
 			game->player->dir = (t_coord){g_dx[i], g_dy[i]};
-			game->player->plane = (t_coord){g_dy[i], -g_dx[i]};
+			game->player->plane = (t_coord){0.66 * g_dy[i], -0.66 * g_dx[i]};
 			return (TRUE);
 		}
 	}

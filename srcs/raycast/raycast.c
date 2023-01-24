@@ -18,7 +18,7 @@ static t_bool	set_raycast_var(t_game *game, int col)
 	t_raycast *const	raycast = game->raycast[col];
 	t_player *const		player = game->player;
 
-	raycast->camera_x = 2 * col / SCREEN_WIDTH - 1;
+	raycast->camera_x = (double) 2 * col / SCREEN_WIDTH - 1;
 	raycast->ray_dir = (t_coord){
 		player->dir.x + player->plane.x * raycast->camera_x,
 		player->dir.y + player->plane.y * raycast->camera_x

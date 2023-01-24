@@ -1,4 +1,5 @@
 #include "../../incs/raycast.h"
+#include <stdio.h>
 
 t_bool			set_line(t_game *game, int col);
 static t_bool	set_line_height(t_game *game, int col);
