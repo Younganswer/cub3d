@@ -42,6 +42,8 @@ typedef struct c_player
 	t_coord	pos;
 	t_coord	dir;
 	t_coord	plane;
+	double	time;
+	double	old_time;
 }	t_player;
 
 typedef struct	s_texture
@@ -54,6 +56,13 @@ typedef struct	s_mlx
 	void	*mlx;
 	void	*window;
 }	t_mlx;
+
+typedef struct	s_worldmap
+{
+	char	**map;
+	size_t	width;
+	size_t	height;
+}	t_worldmap;
 
 typedef struct	s_space
 {
@@ -77,7 +86,7 @@ typedef struct	s_game
 	t_mlx		*mlx;
 	t_space		*space;
 	t_img		*img;
-	t_list		*map;
+	t_worldmap	*worldmap;
 	t_player	*player;
 }	t_game;
 

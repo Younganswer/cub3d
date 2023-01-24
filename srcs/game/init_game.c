@@ -2,6 +2,10 @@
 #include "../../incs/parse.h"
 #include "../../libs/libmlx/incs/mlx.h"
 
+static const char	*g_dir = "NSWE";
+static const int	*g_dx = (int []){-1, 1, 0, 0};
+static const int	*g_dy = (int []){0, 0, -1, 1};
+
 t_bool			init_game(t_game *game, char *file);
 static t_bool	init_mlx(t_game *game);
 static t_bool	init_img(t_game *game);
@@ -49,28 +53,27 @@ static t_bool	init_img(t_game *game)
 
 static t_bool	init_player(t_game *game)
 {
-	const char	*dir = "NSWE";
-	const int	*dx = (int []){-1, 1, 0, 0};
-	const int	*dy = (int []){0, 0, -1, 1};
-	t_list		*tmp;
-	size_t		i;
+	int		row;
+	int		i;
+	char	*col;
 
 	game->player = ft_calloc(sizeof(t_player), 1, "");
-	tmp = game->map;
-	while (tmp != NULL)
+	row = -1;
+	while ((size_t)++row < game->worldmap->height)
 	{
-		i = 0;
-		while (i < 4)
+		i = -1;
+		while (++i < 4)
 		{
-			if (ft_strchr(tmp->content, dir[i++]) == NULL)
-				continue ;
-			game->player->pos = (t_coord){ft_lstindex(game->map, tmp->content),
-				ft_strchr(tmp->content, dir[i - 1]) - (char *) tmp->content};
-			game->player->dir = (t_coord){dx[i - 1], dy[i - 1]};
-			game->player->plane = (t_coord){0, 0.66};
-			return (TRUE);
+			col = ft_strchr(game->worldmap->map[row], g_dir[i]);
+			if (col != NULL)
+			{
+				game->player->pos.x = row;
+				game->player->pos.y = col - game->worldmap->map[row];
+				game->player->dir.x = g_dx[i];
+				game->player->dir.y = g_dy[i];
+				return (TRUE);
+			}
 		}
-		tmp = tmp->next;
 	}
 	return (FALSE);
 }

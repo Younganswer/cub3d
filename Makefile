@@ -18,8 +18,6 @@ LIBMLX_DIR		:= ${LIBS_DIR}/libmlx
 LIBMLX_INCS_DIR	:= ${LIBMLX_DIR}/incs
 LIBMLX			:= ${LIBMLX_DIR}/libmlx.dylib
 
-LIBS			:= ${LIBFT} ${LIBGNL} ${LIBMLX}
-
 INCS_DIR	= incs
 SRCS_DIR	= srcs
 OBJS_DIR	= objs
@@ -34,6 +32,7 @@ SRCS = 	cub3d.c \
 		game/init_game.c \
 		game/exit_game.c \
 		game/key_pressed.c \
+		game/mouse_moved.c \
 		parse/parse.c \
 		parse/parse_floor_ceiling.c \
 		parse/parse_map.c \
@@ -49,32 +48,14 @@ DEPS := ${OBJS:.o=.d}
 all: ${NAME}
 
 
-${OBJS_DIR}:
-	@echo "Build ${NAME}"
-	@mkdir -p ${OBJS_DIR}
-	@mkdir -p ${OBJS_DIR}/game
-	@mkdir -p ${OBJS_DIR}/parse
-	@mkdir -p ${OBJS_DIR}/raycast
-	@mkdir -p ${OBJS_DIR}/render
-
-
-${LIBFT}:
-	@make -C ${LIBFT_DIR}
-
-
-${LIBGNL}:
-	@make -C ${LIBGNL_DIR}
-
-
-${LIBMLX}:
-	@make -C ${LIBMLX_DIR}
-
-
-${NAME}: ${LIBS} ${OBJS}
+${NAME}: ${OBJS}
 	@printf "\bdone\n"
 	@${CC} ${LDFLAGS} -g -o ${NAME} ${OBJS}
 	@install_name_tool -change libmlx.dylib @executable_path/${LIBMLX_DIR}/libmlx.dylib ${NAME}
 	@echo "Build ${NAME}: done"
+
+
+${OBJS}: ${LIBMLX}
 
 
 ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c | ${OBJS_DIR}
@@ -87,6 +68,27 @@ ${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c | ${OBJS_DIR}
 	fi
 	@printf "\b${CHR}"
 	@${CC} ${CFLAGS} -g -c $< -o $@
+
+
+${OBJS_DIR}:
+	@echo "Build ${NAME}"
+	@mkdir -p ${OBJS_DIR}
+	@mkdir -p ${OBJS_DIR}/game
+	@mkdir -p ${OBJS_DIR}/parse
+	@mkdir -p ${OBJS_DIR}/raycast
+	@mkdir -p ${OBJS_DIR}/render
+
+
+${LIBFT}:
+	@${MAKE} -C ${LIBFT_DIR}
+
+
+${LIBGNL}: ${LIBFT}
+	@${MAKE} -C ${LIBGNL_DIR}
+
+
+${LIBMLX}: ${LIBGNL}
+	@${MAKE} -j1 -C ${LIBMLX_DIR}
 
 
 clean:

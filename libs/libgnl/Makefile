@@ -6,7 +6,7 @@
 #    By: younhwan <younhwan@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 00:26:43 by younhwan          #+#    #+#              #
-#    Updated: 2023/01/12 19:16:12 by younhwan         ###   ########.fr        #
+#    Updated: 2023/01/24 11:27:26 by younhwan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ IDX		= 0
 NAME = libgnl.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3
 AR = ar rcs
 RM = rm -f
 

@@ -39,14 +39,11 @@ static t_bool	print_space(t_game *game)
 
 static t_bool	print_map(t_game *game)
 {
-	t_list	*tmp;
+	size_t	i;
 
-	tmp = game->map;
-	while (tmp)
-	{
-		printf("%s\n", (char *) tmp->content);
-		tmp = tmp->next;
-	}
+	i = 0;
+	while (i < game->worldmap->height)
+		printf("%s\n", game->worldmap->map[i++]);
 	return (TRUE);
 }
 
