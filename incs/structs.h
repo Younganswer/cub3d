@@ -42,8 +42,6 @@ typedef struct c_player
 	t_coord	pos;
 	t_coord	dir;
 	t_coord	plane;
-	double	time;
-	double	old_time;
 }	t_player;
 
 typedef struct	s_texture
@@ -90,8 +88,7 @@ typedef struct	s_space
 
 typedef struct	s_img
 {
-	void	*img_to_render;
-	void	*img_buffer;
+	void	*img;
 	int		*data;
 	int		bits_per_pixel;
 	int		size_line;

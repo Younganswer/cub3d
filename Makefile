@@ -40,7 +40,8 @@ SRCS = 	cub3d.c \
 		raycast/raycast.c \
 		raycast/dda.c \
 		raycast/set_line.c \
-		render/render.c
+		render/render.c \
+		render/render_line.c
 		
 SRCS := ${addprefix ${SRCS_DIR}/, ${SRCS}}
 OBJS := ${SRCS:${SRCS_DIR}/%.c=${OBJS_DIR}/%.o}

@@ -6,4 +6,7 @@
 // render.c
 int	render(t_game *game);
 
+// render_line.c
+t_bool	render_line(t_game *game, int col);
+
 #endif

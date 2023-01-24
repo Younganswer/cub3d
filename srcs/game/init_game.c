@@ -43,16 +43,12 @@ static t_bool	init_mlx(t_game *game)
 static t_bool	init_img(t_game *game)
 {
 	game->img = ft_calloc(sizeof(t_img), 1, "");
-	game->img->img_to_render = mlx_new_image(
+	game->img->img = mlx_new_image(
 			game->mlx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	if (game->img->img_to_render == NULL)
-		return (FALSE);
-	game->img->img_buffer = mlx_new_image(
-			game->mlx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	if (game->img->img_buffer == NULL)
+	if (game->img->img == NULL)
 		return (FALSE);
 	game->img->data = (int *) mlx_get_data_addr(
-			game->img->img_to_render, &game->img->bits_per_pixel,
+			game->img->img, &game->img->bits_per_pixel,
 			&game->img->size_line, &game->img->endian
 			);
 	return (TRUE);

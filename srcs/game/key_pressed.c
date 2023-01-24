@@ -1,7 +1,8 @@
 #include "../../incs/game.h"
 #include <stdio.h>
 
-int	key_pressed(int keycode, t_game *game);
+int				key_pressed(int keycode, t_game *game);
+static t_bool	move(t_keycode keycode, t_game *game);
 
 static int		print_game(int key, t_game *game);
 static t_bool	print_space(t_game *game);
@@ -14,7 +15,45 @@ int	key_pressed(int keycode, t_game *game)
 		exit_game(game);
 	if (keycode == KEY_RETURN)
 		print_game(keycode, game);
+	if (keycode == KEY_W || \
+		keycode == KEY_S || \
+		keycode == KEY_A || \
+		keycode == KEY_D)
+		move(keycode, game);
 	return (0);
+}
+
+static t_bool	move(t_keycode keycode, t_game *game)
+{
+	if (keycode == KEY_W)
+	{
+		if (game->worldmap->map[(int)(game->player->pos.y + game->player->dir.y * 0.1)][(int)(game->player->pos.x)] == '0')
+			game->player->pos.y += game->player->dir.y * 0.1;
+		if (game->worldmap->map[(int)(game->player->pos.y)][(int)(game->player->pos.x + game->player->dir.x * 0.1)] == '0')
+			game->player->pos.x += game->player->dir.x * 0.1;
+	}
+	else if (keycode == KEY_S)
+	{
+		if (game->worldmap->map[(int)(game->player->pos.y - game->player->dir.y * 0.1)][(int)(game->player->pos.x)] == '0')
+			game->player->pos.y -= game->player->dir.y * 0.1;
+		if (game->worldmap->map[(int)(game->player->pos.y)][(int)(game->player->pos.x - game->player->dir.x * 0.1)] == '0')
+			game->player->pos.x -= game->player->dir.x * 0.1;
+	}
+	else if (keycode == KEY_A)
+	{
+		if (game->worldmap->map[(int)(game->player->pos.y + game->player->dir.x * 0.1)][(int)(game->player->pos.x)] == '0')
+			game->player->pos.y += game->player->dir.x * 0.1;
+		if (game->worldmap->map[(int)(game->player->pos.y)][(int)(game->player->pos.x - game->player->dir.y * 0.1)] == '0')
+			game->player->pos.x -= game->player->dir.y * 0.1;
+	}
+	else if (keycode == KEY_D)
+	{
+		if (game->worldmap->map[(int)(game->player->pos.y - game->player->dir.x * 0.1)][(int)(game->player->pos.x)] == '0')
+			game->player->pos.y -= game->player->dir.x * 0.1;
+		if (game->worldmap->map[(int)(game->player->pos.y)][(int)(game->player->pos.x + game->player->dir.y * 0.1)] == '0')
+			game->player->pos.x += game->player->dir.y * 0.1;
+	}
+	return (TRUE);
 }
 
 static int	print_game(int key, t_game *game)
