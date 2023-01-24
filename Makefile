@@ -38,6 +38,8 @@ SRCS = 	cub3d.c \
 		parse/parse_map.c \
 		parse/parse_texture.c \
 		raycast/raycast.c \
+		raycast/dda.c \
+		raycast/set_line.c \
 		render/render.c
 		
 SRCS := ${addprefix ${SRCS_DIR}/, ${SRCS}}

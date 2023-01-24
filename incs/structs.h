@@ -57,6 +57,23 @@ typedef struct	s_mlx
 	void	*window;
 }	t_mlx;
 
+typedef struct	s_raycast
+{
+	t_coord		ray_dir;
+	t_coord		side_dist;
+	t_coord		delta_dist;
+	t_coord		step;
+	t_coord		map;
+	double		camera_x;
+	double		perp_wall_dist;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	t_bool		hit;
+	t_bool		side;
+	size_t		color;
+}	t_raycast;
+
 typedef struct	s_worldmap
 {
 	char	**map;
@@ -88,6 +105,7 @@ typedef struct	s_game
 	t_img		*img;
 	t_worldmap	*worldmap;
 	t_player	*player;
+	t_raycast	**raycast;
 }	t_game;
 
 #endif

@@ -8,9 +8,7 @@ static int		get_idx(char *dir);
 t_bool	parse_texture(t_space *space, int fd)
 {
 	space->walls = ft_calloc(sizeof(t_texture), 4, "");
-	if (set_texture_file(space->walls, fd) == FALSE)
-		return (FALSE);
-	return (TRUE);
+	return (set_texture_file(space->walls, fd));
 }
 
 static t_bool	set_texture_file(t_texture *walls, int fd)

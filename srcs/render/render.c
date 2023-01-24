@@ -5,6 +5,14 @@ int	render(t_game *game);
 
 int	render(t_game *game)
 {
-	raycast(game);
+	int	col;
+
+	col = 0;
+	while (col < SCREEN_WIDTH)
+	{
+		if (raycast(game, col) == FALSE)
+			return (0);
+		col++;
+	}
 	return (0);
 }

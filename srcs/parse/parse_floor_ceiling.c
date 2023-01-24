@@ -46,7 +46,7 @@ static t_bool	set_color(size_t *color, char *line)
 			return (del_string(rgb) == FALSE);
 		*color = (*color << 8) + c;
 	}
-	return (del_string(rgb) == TRUE);
+	return (del_string(rgb));
 }
 
 static t_bool	del_string(char **str)
