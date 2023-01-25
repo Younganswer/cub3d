@@ -1,5 +1,4 @@
 #include "../../incs/raycast.h"
-#include <stdio.h>
 
 t_bool			set_line(t_game *game, int col);
 static t_bool	set_line_height(t_game *game, int col);
@@ -23,10 +22,10 @@ static t_bool	set_line_height(t_game *game, int col)
 		raycast->perp_wall_dist = (raycast->map.y - game->player->pos.y
 				+ (1 - raycast->step.y) / 2) / raycast->ray_dir.y;
 	raycast->line_height = (int)(SCREEN_HEIGHT / raycast->perp_wall_dist);
-	raycast->draw_start = -raycast->line_height / 2 + SCREEN_HEIGHT / 2;
+	raycast->draw_start = (SCREEN_HEIGHT / 2) - (raycast->line_height / 2);
 	if (raycast->draw_start < 0)
 		raycast->draw_start = 0;
-	raycast->draw_end = raycast->line_height / 2 + SCREEN_HEIGHT / 2;
+	raycast->draw_end = (SCREEN_HEIGHT / 2) + (raycast->line_height / 2);
 	if (SCREEN_HEIGHT <= raycast->draw_end)
 		raycast->draw_end = SCREEN_HEIGHT - 1;
 	return (TRUE);

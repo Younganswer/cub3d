@@ -24,6 +24,7 @@ t_bool	init_game(t_game *game, char *file)
 	i = 0;
 	while (i < SCREEN_WIDTH)
 		game->raycast[i++] = ft_calloc(sizeof(t_raycast), 1, "");
+	mlx_mouse_hide();
 	return (TRUE);
 }
 
@@ -73,6 +74,7 @@ static t_bool	init_player(t_game *game)
 			game->player->pos = (t_coord){row, col - game->worldmap->map[row]};
 			game->player->dir = (t_coord){g_dx[i], g_dy[i]};
 			game->player->plane = (t_coord){0.66 * g_dy[i], -0.66 * g_dx[i]};
+			*col = '0';
 			return (TRUE);
 		}
 	}

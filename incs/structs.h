@@ -17,10 +17,10 @@ typedef enum e_keycode
 {
 	KEY_ESC = 53,
 	KEY_RETURN = 36,
-	KEY_W = 119,
-	KEY_A = 97,
-	KEY_S = 115,
-	KEY_D = 100,
+	KEY_W = 13,
+	KEY_A = 0,
+	KEY_S = 1,
+	KEY_D = 2,
 }	t_keycode;
 
 typedef enum	e_direction

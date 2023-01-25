@@ -49,13 +49,14 @@ static t_bool	dda_algorithm(t_game *game, int col)
 		{
 			raycast->side_dist.x += raycast->delta_dist.x;
 			raycast->map.x += raycast->step.x;
+			raycast->side = FALSE;
 		}
 		else
 		{
 			raycast->side_dist.y += raycast->delta_dist.y;
 			raycast->map.y += raycast->step.y;
+			raycast->side = TRUE;
 		}
-		raycast->side = raycast->side_dist.x < raycast->side_dist.y;
 		raycast->hit = game->worldmap->map[
 			(int)raycast->map.x][(int)raycast->map.y] == '1';
 	}

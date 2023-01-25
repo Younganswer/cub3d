@@ -16,8 +16,8 @@ int	key_pressed(int keycode, t_game *game)
 	if (keycode == KEY_RETURN)
 		print_game(keycode, game);
 	if (keycode == KEY_W || \
-		keycode == KEY_S || \
 		keycode == KEY_A || \
+		keycode == KEY_S || \
 		keycode == KEY_D)
 		move(keycode, game);
 	return (0);
@@ -27,31 +27,31 @@ static t_bool	move(t_keycode keycode, t_game *game)
 {
 	if (keycode == KEY_W)
 	{
-		if (game->worldmap->map[(int)(game->player->pos.y + game->player->dir.y * 0.1)][(int)(game->player->pos.x)] == '0')
-			game->player->pos.y += game->player->dir.y * 0.1;
-		if (game->worldmap->map[(int)(game->player->pos.y)][(int)(game->player->pos.x + game->player->dir.x * 0.1)] == '0')
-			game->player->pos.x += game->player->dir.x * 0.1;
+		if (game->worldmap->map[(int)(game->player->pos.x + game->player->dir.x * 0.04)][(int)(game->player->pos.y)] == '0')
+			game->player->pos.x += game->player->dir.x * 0.04;
+		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y + game->player->dir.y * 0.04)] == '0')
+			game->player->pos.y += game->player->dir.y * 0.04;
 	}
 	else if (keycode == KEY_S)
 	{
-		if (game->worldmap->map[(int)(game->player->pos.y - game->player->dir.y * 0.1)][(int)(game->player->pos.x)] == '0')
-			game->player->pos.y -= game->player->dir.y * 0.1;
-		if (game->worldmap->map[(int)(game->player->pos.y)][(int)(game->player->pos.x - game->player->dir.x * 0.1)] == '0')
-			game->player->pos.x -= game->player->dir.x * 0.1;
+		if (game->worldmap->map[(int)(game->player->pos.x - game->player->dir.x * 0.04)][(int)(game->player->pos.y)] == '0')
+			game->player->pos.x -= game->player->dir.x * 0.04;
+		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y - game->player->dir.y * 0.04)] == '0')
+			game->player->pos.y -= game->player->dir.y * 0.04;
 	}
 	else if (keycode == KEY_A)
 	{
-		if (game->worldmap->map[(int)(game->player->pos.y + game->player->dir.x * 0.1)][(int)(game->player->pos.x)] == '0')
-			game->player->pos.y += game->player->dir.x * 0.1;
-		if (game->worldmap->map[(int)(game->player->pos.y)][(int)(game->player->pos.x - game->player->dir.y * 0.1)] == '0')
-			game->player->pos.x -= game->player->dir.y * 0.1;
+		if (game->worldmap->map[(int)(game->player->pos.x - game->player->dir.y * 0.04)][(int)(game->player->pos.y)] == '0')
+			game->player->pos.x -= game->player->dir.y * 0.04;
+		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y + game->player->dir.x * 0.04)] == '0')
+			game->player->pos.y += game->player->dir.x * 0.04;
 	}
 	else if (keycode == KEY_D)
 	{
-		if (game->worldmap->map[(int)(game->player->pos.y - game->player->dir.x * 0.1)][(int)(game->player->pos.x)] == '0')
-			game->player->pos.y -= game->player->dir.x * 0.1;
-		if (game->worldmap->map[(int)(game->player->pos.y)][(int)(game->player->pos.x + game->player->dir.y * 0.1)] == '0')
-			game->player->pos.x += game->player->dir.y * 0.1;
+		if (game->worldmap->map[(int)(game->player->pos.x + game->player->dir.y * 0.04)][(int)(game->player->pos.y)] == '0')
+			game->player->pos.x += game->player->dir.y * 0.04;
+		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y - game->player->dir.x * 0.04)] == '0')
+			game->player->pos.y -= game->player->dir.x * 0.04;
 	}
 	return (TRUE);
 }
