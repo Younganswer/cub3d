@@ -1,7 +1,7 @@
 #include "../../incs/game.h"
 #include <stdio.h>
 
-const static double	move_speed = 0.03;
+const static double	g_move_speed = 0.03;
 
 int				key_pressed(int keycode, t_game *game);
 static t_bool	move(t_keycode keycode, t_game *game);
@@ -29,31 +29,31 @@ static t_bool	move(t_keycode keycode, t_game *game)
 {
 	if (keycode == KEY_W)
 	{
-		if (game->worldmap->map[(int)(game->player->pos.x + game->player->dir.x * move_speed)][(int)(game->player->pos.y)] == '0')
-			game->player->pos.x += game->player->dir.x * move_speed;
-		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y + game->player->dir.y * move_speed)] == '0')
-			game->player->pos.y += game->player->dir.y * move_speed;
+		if (game->worldmap->map[(int)(game->player->pos.x + game->player->dir.x * g_move_speed)][(int)(game->player->pos.y)] == '0')
+			game->player->pos.x += game->player->dir.x * g_move_speed;
+		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y + game->player->dir.y * g_move_speed)] == '0')
+			game->player->pos.y += game->player->dir.y * g_move_speed;
 	}
 	else if (keycode == KEY_S)
 	{
-		if (game->worldmap->map[(int)(game->player->pos.x - game->player->dir.x * move_speed)][(int)(game->player->pos.y)] == '0')
-			game->player->pos.x -= game->player->dir.x * move_speed;
-		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y - game->player->dir.y * move_speed)] == '0')
-			game->player->pos.y -= game->player->dir.y * move_speed;
+		if (game->worldmap->map[(int)(game->player->pos.x - game->player->dir.x * g_move_speed)][(int)(game->player->pos.y)] == '0')
+			game->player->pos.x -= game->player->dir.x * g_move_speed;
+		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y - game->player->dir.y * g_move_speed)] == '0')
+			game->player->pos.y -= game->player->dir.y * g_move_speed;
 	}
 	else if (keycode == KEY_A)
 	{
-		if (game->worldmap->map[(int)(game->player->pos.x - game->player->dir.y * move_speed)][(int)(game->player->pos.y)] == '0')
-			game->player->pos.x -= game->player->dir.y * move_speed;
-		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y + game->player->dir.x * move_speed)] == '0')
-			game->player->pos.y += game->player->dir.x * move_speed;
+		if (game->worldmap->map[(int)(game->player->pos.x - game->player->dir.y * g_move_speed)][(int)(game->player->pos.y)] == '0')
+			game->player->pos.x -= game->player->dir.y * g_move_speed;
+		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y + game->player->dir.x * g_move_speed)] == '0')
+			game->player->pos.y += game->player->dir.x * g_move_speed;
 	}
 	else if (keycode == KEY_D)
 	{
-		if (game->worldmap->map[(int)(game->player->pos.x + game->player->dir.y * move_speed)][(int)(game->player->pos.y)] == '0')
-			game->player->pos.x += game->player->dir.y * move_speed;
-		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y - game->player->dir.x * move_speed)] == '0')
-			game->player->pos.y -= game->player->dir.x * move_speed;
+		if (game->worldmap->map[(int)(game->player->pos.x + game->player->dir.y * g_move_speed)][(int)(game->player->pos.y)] == '0')
+			game->player->pos.x += game->player->dir.y * g_move_speed;
+		if (game->worldmap->map[(int)(game->player->pos.x)][(int)(game->player->pos.y - game->player->dir.x * g_move_speed)] == '0')
+			game->player->pos.y -= game->player->dir.x * g_move_speed;
 	}
 	return (TRUE);
 }

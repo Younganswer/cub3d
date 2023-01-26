@@ -6,10 +6,9 @@ static t_bool	dda_algorithm(t_game *game, int col);
 
 t_bool	dda(t_game *game, int col)
 {
-	if (set_dda_var(game, col) == FALSE || \
-		dda_algorithm(game, col) == FALSE)
-		return (FALSE);
-	return (TRUE);
+	return (set_dda_var(game, col) && \
+			dda_algorithm(game, col)
+	);
 }
 
 static t_bool	set_dda_var(t_game *game, int col)

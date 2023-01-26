@@ -1,24 +1,49 @@
 #include "../../incs/render.h"
+#include <math.h>
 
-t_bool	render_line(t_game *game, int col);
+t_bool			render_line(t_game *game, int col);
+static size_t	get_texture_color(t_raycast *raycast, t_player *player, int r);
 
 t_bool	render_line(t_game *game, int col)
 {
 	t_raycast *const	raycast = game->raycast[col];
-	int					i;
+	int					row;
 	size_t				color;
 
-	i = 0;
-	while (i < SCREEN_HEIGHT)
+	row = 0;
+	while (row < game->img->height)
 	{
-		if (i < raycast->draw_start)
-			color = 0x00FFFFFF;
-		else if (raycast->draw_end < i)
-			color = 0x00000000;
+		if (row < raycast->draw_start)
+			color = game->space->ceiling_color;
+		else if (raycast->draw_end < row)
+			color = game->space->floor_color;
 		else
-			color = raycast->color;
-		game->img->data[i * SCREEN_WIDTH + col] = color;
-		i++;
+			color = get_texture_color(raycast, game->player, row);
+		game->img->data[row * game->img->width + col] = color;
+		row++;
 	}
 	return (TRUE);
+}
+
+static size_t	get_texture_color(t_raycast *raycast, t_player *player, int r)
+{
+	const double	step
+		= 1.0 * raycast->texture->img->height / raycast->line_height;
+	const int		tex_row = (int) (step * (r - SCREEN_HEIGHT / 2 + raycast->line_height / 2))
+		& (raycast->texture->img->height - 1);
+	double			wall_pos;
+	int				tex_col;
+	size_t			ret;
+
+	if (raycast->side == FALSE)
+		wall_pos = player->pos.y + raycast->perp_wall_dist * raycast->ray_dir.y;
+	else
+		wall_pos = player->pos.x + raycast->perp_wall_dist * raycast->ray_dir.x;
+	wall_pos -= floor(wall_pos);
+	tex_col = (int)(wall_pos * (double)raycast->texture->img->width);
+	if ((0 < raycast->ray_dir.x && raycast->side == FALSE) || \
+		(raycast->ray_dir.y < 0 && raycast->side == TRUE))
+		tex_col = raycast->texture->img->width - tex_col - 1;
+	ret = raycast->texture->img->data[tex_row * raycast->texture->img->width + tex_col];
+	return (ret);
 }

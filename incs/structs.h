@@ -46,16 +46,42 @@ typedef struct c_player
 	t_coord	plane;
 }	t_player;
 
-typedef struct	s_texture
-{
-	char	*file;
-}	t_texture;
-
 typedef struct	s_mlx
 {
 	void	*mlx;
 	void	*window;
 }	t_mlx;
+
+typedef struct	s_worldmap
+{
+	char	**map;
+	size_t	width;
+	size_t	height;
+}	t_worldmap;
+
+typedef struct	s_img
+{
+	void	*img;
+	int		*data;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+}	t_img;
+
+typedef struct	s_texture
+{
+	char	*file;
+	t_img	*img;
+}	t_texture;
+
+typedef struct	s_space
+{
+	t_texture	*walls;
+	size_t		floor_color;
+	size_t		ceiling_color;
+}	t_space;
 
 typedef struct	s_raycast
 {
@@ -71,31 +97,8 @@ typedef struct	s_raycast
 	int			draw_end;
 	t_bool		hit;
 	t_bool		side;
-	size_t		color;
+	t_texture	*texture;
 }	t_raycast;
-
-typedef struct	s_worldmap
-{
-	char	**map;
-	size_t	width;
-	size_t	height;
-}	t_worldmap;
-
-typedef struct	s_space
-{
-	t_texture	*walls;
-	size_t		floor_color;
-	size_t		ceiling_color;
-}	t_space;
-
-typedef struct	s_img
-{
-	void	*img;
-	int		*data;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-}	t_img;
 
 typedef struct	s_game
 {

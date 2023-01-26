@@ -7,14 +7,15 @@
 // parse.c
 t_bool	parse(t_game *game, char *file);
 char	*get_next_line_which_is_not_empty(int fd);
+t_bool	check_file_extension(char *file, char *ext);
 
-// parse_floor_ceil.c
-t_bool	parse_floor_ceiling(t_space *space, int fd);
+// parse_floor_ceiling.c
+t_bool	parse_floor_ceiling(t_game *game, int fd);
 
 // parse_map.c
 t_bool	parse_map(t_game *game, int fd);
 
 // parse_texture.c
-t_bool	parse_texture(t_space *space, int fd);
+t_bool	parse_texture(t_game *game, int fd);
 
 #endif

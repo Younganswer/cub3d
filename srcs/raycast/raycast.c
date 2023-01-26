@@ -6,11 +6,10 @@ static t_bool	set_raycast_var(t_game *game, int col);
 
 t_bool	raycast(t_game *game, int col)
 {
-	if (set_raycast_var(game, col) == FALSE || \
-		dda(game, col) == FALSE || \
-		set_line(game, col) == FALSE)
-		return (FALSE);
-	return (TRUE);
+	return (set_raycast_var(game, col) && \
+			dda(game, col) && \
+			set_line(game, col)
+	);
 }
 
 static t_bool	set_raycast_var(t_game *game, int col)

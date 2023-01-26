@@ -2,12 +2,12 @@
 
 t_bool			set_line(t_game *game, int col);
 static t_bool	set_line_height(t_game *game, int col);
-static t_bool	set_line_color(t_game *game, int col);
+static t_bool	set_line_texture(t_game *game, int col);
 
 t_bool	set_line(t_game *game, int col)
 {
 	if (set_line_height(game, col) == FALSE || \
-		set_line_color(game, col) == FALSE)
+		set_line_texture(game, col) == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
@@ -31,23 +31,23 @@ static t_bool	set_line_height(t_game *game, int col)
 	return (TRUE);
 }
 
-static t_bool	set_line_color(t_game *game, int col)
+static t_bool	set_line_texture(t_game *game, int col)
 {
 	t_raycast *const	raycast = game->raycast[col];
 
 	if (raycast->side == FALSE)
 	{
 		if (raycast->ray_dir.x < 0)
-			raycast->color = 0x00FF0000;
+			raycast->texture = &game->space->walls[NO];
 		else
-			raycast->color = 0x0000FF00;
+			raycast->texture = &game->space->walls[SO];
 	}
 	else
 	{
 		if (raycast->ray_dir.y < 0)
-			raycast->color = 0x000000FF;
+			raycast->texture = &game->space->walls[WE];
 		else
-			raycast->color = 0x00FFFF00;
+			raycast->texture = &game->space->walls[EA];
 	}
 	return (TRUE);
 }
