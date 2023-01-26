@@ -3,7 +3,6 @@
 #include "../incs/parse.h"
 #include "../incs/game.h"
 #include "../incs/render.h"
-#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {

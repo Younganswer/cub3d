@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 t_bool	parse(t_game *game, char *file);
 char	*get_next_line_which_is_not_empty(int fd);

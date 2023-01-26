@@ -1,6 +1,4 @@
 #include "../../incs/raycast.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 t_bool			dda(t_game *game, int col);
 static t_bool	set_dda_var(t_game *game, int col);

@@ -91,7 +91,7 @@ ${LIBGNL}: ${LIBFT}
 
 
 ${LIBMLX}: ${LIBGNL}
-	@${MAKE} -j1 -C ${LIBMLX_DIR}
+	@${MAKE} -C ${LIBMLX_DIR}
 
 
 clean:
