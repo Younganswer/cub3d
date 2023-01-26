@@ -7,7 +7,7 @@
 <br/><br/><br/>
 
 ## Install
-	$ make [-j] (all)
+	$ make [-jN] (all)
 <br/><br/><br/>
 
 ## Usage
