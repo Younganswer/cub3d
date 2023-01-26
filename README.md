@@ -7,8 +7,17 @@
 <br/><br/><br/>
 
 ## Install
-	$ make (all)
+	$ make [-j] (all)
 <br/><br/><br/>
 
 ## Usage
-	$ ./cub3d
+	$ ./cub3d ./path_to_map/mapfile.cub
+* File must end with `.cub` extension
+* map.cub is a file that contains all the information needed to create the map
+	* path to xpm textures
+		* NO, SO, WE, EA
+	* color of floor and ceiling
+		* F, C
+	* map
+		* 0, 1, N, S, E, W
+		* map must be closed by walls
