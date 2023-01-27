@@ -54,7 +54,7 @@ static int	get_idx(char *dir)
 static t_bool	xpm_to_img(t_game *game)
 {
 	t_texture	*wall;
-	size_t	i;
+	size_t		i;
 
 	i = 0;
 	while (i < 4)
@@ -62,12 +62,13 @@ static t_bool	xpm_to_img(t_game *game)
 		wall = &game->space->walls[i];
 		wall->img = ft_calloc(sizeof(t_img), 1, "");
 		wall->img->img = mlx_xpm_file_to_image(
-			game->mlx->mlx, wall->file, &wall->img->width, &wall->img->height);
+				game->mlx->mlx, wall->file,
+				&wall->img->width, &wall->img->height);
 		if (wall->img->img == NULL)
 			return (FALSE);
 		wall->img->data = (int *) mlx_get_data_addr(
-			wall->img->img, &wall->img->bits_per_pixel,
-			&wall->img->size_line, &wall->img->endian);
+				wall->img->img, &wall->img->bits_per_pixel,
+				&wall->img->size_line, &wall->img->endian);
 		if (wall->img->data == NULL)
 			return (FALSE);
 		i++;

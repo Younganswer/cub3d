@@ -8,9 +8,9 @@ static t_bool	del_string(char **str);
 t_bool	parse_floor_ceiling(t_game *game, int fd)
 {
 	t_space *const	space = game->space;
-	t_bool	ret;
-	size_t	i;
-	char	*line;
+	t_bool			ret;
+	size_t			i;
+	char			*line;
 
 	i = 0;
 	while (i++ < 2)
@@ -20,8 +20,8 @@ t_bool	parse_floor_ceiling(t_game *game, int fd)
 		if (line == NULL)
 			return (FALSE);
 		if ((*line != 'C' && *line != 'F') || \
-			(*line == 'C' && set_color(&space->ceiling_color, line + 2) == FALSE) || \
-			(*line == 'F' && set_color(&space->floor_color, line + 2) == FALSE))
+			(*line == 'C' && !set_color(&space->ceiling_color, line + 2)) || \
+			(*line == 'F' && !set_color(&space->floor_color, line + 2)))
 			ret = FALSE;
 		free(line);
 		if (ret == FALSE)
