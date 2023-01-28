@@ -11,7 +11,7 @@
 <br/><br/><br/>
 
 ## Usage
-	$ ./cub3d ./path_to_map/mapfile.cub
+	$ ./cub3d /path_to_map/mapfile.cub
 * File must end with `.cub` extension
 * map.cub is a file that contains all the information needed to create the map
 	* path to xpm textures
