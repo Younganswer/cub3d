@@ -33,11 +33,13 @@ static t_bool	init_mlx(t_game *game)
 {
 	game->mlx = ft_calloc(sizeof(t_mlx), 1, "");
 	game->mlx->mlx = mlx_init();
+	if (game->mlx->mlx == NULL)
+		return (set_err_code(game, MLX_ERR) == FALSE);
 	game->mlx->window = \
 		mlx_new_window(game->mlx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
-	if (game->mlx->mlx == NULL || game->mlx->window == NULL)
-		game->err = MLX_ERR;
-	return (game->err == 0);
+	if (game->mlx->window == NULL)
+		return (set_err_code(game, MLX_ERR) == FALSE);
+	return (TRUE);
 }
 
 static t_bool	init_img(t_game *game)
@@ -48,15 +50,14 @@ static t_bool	init_img(t_game *game)
 	game->img->img = mlx_new_image(
 			game->mlx->mlx, game->img->width, game->img->height);
 	if (game->img->img == NULL)
-		game->err = IMG_ERR;
-	else
-		game->img->data = (int *) mlx_get_data_addr(
-				game->img->img, &game->img->bits_per_pixel,
-				&game->img->size_line, &game->img->endian
-				);
+		return (set_err_code(game, IMG_ERR) == FALSE);
+	game->img->data = (int *) mlx_get_data_addr(
+			game->img->img, &game->img->bits_per_pixel,
+			&game->img->size_line, &game->img->endian
+			);
 	if (game->img->data == NULL)
-		game->err = IMG_ERR;
-	return (game->err == 0);
+		return (set_err_code(game, IMG_ERR) == FALSE);
+	return (TRUE);
 }
 
 static t_bool	init_player(t_game *game)
@@ -82,6 +83,5 @@ static t_bool	init_player(t_game *game)
 			return (TRUE);
 		}
 	}
-	game->err = PLAYER_ERR;
-	return (FALSE);
+	return (set_err_code(game, PLAYER_ERR) == FALSE);
 }

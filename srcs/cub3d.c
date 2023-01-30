@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 		exit_with_error(game);
 	mlx_hook(game->mlx->window, ON_DESTROY, 0, exit_game, game);
 	mlx_hook(game->mlx->window, ON_KEYDOWN, 0, key_pressed, game);
+	mlx_hook(game->mlx->window, ON_KEYRELEASE, 0, key_released, game);
 	mlx_hook(game->mlx->window, ON_MOUSEMOVE, 0, mouse_moved, game);
 	mlx_loop_hook(game->mlx->mlx, render, game);
 	mlx_loop(game->mlx->mlx);

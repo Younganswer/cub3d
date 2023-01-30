@@ -1,4 +1,5 @@
 #include "../../incs/render.h"
+#include "../../incs/game.h"
 #include "../../incs/raycast.h"
 #include "../../libs/libmlx/incs/mlx.h"
 
@@ -8,6 +9,8 @@ int	render(t_game *game)
 {
 	int	col;
 
+	if (move(game) == FALSE)
+		return (0);
 	col = 0;
 	while (col < SCREEN_WIDTH)
 	{

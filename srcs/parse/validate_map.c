@@ -1,4 +1,5 @@
 #include "../../incs/parse.h"
+#include "../../incs/game.h"
 
 int *const	g_dx = (int []){-1, 0, 1, 0};
 int *const	g_dy = (int []){0, 1, 0, -1};
@@ -28,10 +29,7 @@ static t_bool	has_non_allowed_char(t_game *game)
 		while (j < worldmap->width)
 		{
 			if (ft_strchr("01NSEW ", worldmap->map[i][j]) == NULL)
-			{
-				game->err = NON_ALLOWED_CHAR_ERR;
-				return (FALSE);
-			}
+				return (set_err_code(game, NON_ALLOWED_CHAR_ERR) == FALSE);
 			j++;
 		}
 		i++;
@@ -49,7 +47,7 @@ static t_bool	map_is_closed(t_game *game)
 	while (i < game->worldmap->height)
 		visited[i++] = ft_calloc(sizeof(char), game->worldmap->width, "");
 	if (dfs(game, game->player->pos.x, game->player->pos.y, visited) == FALSE)
-		game->err = MAP_BOARDER_ERR;
+		set_err_code(game, MAP_BOARDER_ERR);
 	del_string(visited);
 	return (game->err == 0);
 }

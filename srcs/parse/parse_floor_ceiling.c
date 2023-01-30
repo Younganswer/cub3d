@@ -1,4 +1,5 @@
 #include "../../incs/parse.h"
+#include "../../incs/game.h"
 #include <stdlib.h>
 
 t_bool			parse_floor_ceiling(t_game *game, int fd);
@@ -17,11 +18,11 @@ t_bool	parse_floor_ceiling(t_game *game, int fd)
 		if (line == NULL)
 			return (FALSE);
 		if (*line != 'C' && *line != 'F')
-			game->err = IDENTIFIER_ERR;
+			set_err_code(game, IDENTIFIER_ERR);
 		else if (
 			(*line == 'C' && !set_color(&space->ceiling_color, line + 2)) || \
 			(*line == 'F' && !set_color(&space->floor_color, line + 2)))
-			game->err = RGB_ERR;
+			set_err_code(game, RGB_ERR);
 		free(line);
 		if (game->err != 0)
 			return (FALSE);

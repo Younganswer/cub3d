@@ -2,10 +2,10 @@
 #include "../../libs/libmlx/incs/mlx.h"
 #include <math.h>
 
-const double	g_rot_speed = 0.015;
+const double	g_rot_speed = 0.01;
 
-int				mouse_moved(int x, int y, t_game *game);
-static t_bool	set_new_dir(t_player *player, int dir);
+int		mouse_moved(int x, int y, t_game *game);
+t_bool	set_new_dir(t_player *player, int dir);
 
 int	mouse_moved(int x, int y, t_game *game)
 {
@@ -26,7 +26,7 @@ int	mouse_moved(int x, int y, t_game *game)
 	return (0);
 }
 
-static t_bool	set_new_dir(t_player *player, int dir)
+t_bool	set_new_dir(t_player *player, int dir)
 {
 	const t_coord	old_dir = player->dir;
 	const t_coord	old_plane = player->plane;

@@ -24,15 +24,16 @@ OBJS_DIR	= objs
 
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -I${INCS_DIR} -I${LIBFT_INCS_DIR} -I${LIBGNL_INCS_DIR} -I${LIBMLX_INCS_DIR} -MD -O3
-LDFLAGS	= -L${LIBFT_DIR} -lft -L${LIBGNL_DIR} -lgnl -L${LIBMLX_DIR} -lmlx -framework OpenGL -framework AppKit
+LDFLAGS	= -L${LIBFT_DIR} -lft -L${LIBGNL_DIR} -lgnl -L${LIBMLX_DIR} -lmlx -framework OpenGL -framework AppKit -fsanitize=address
 AR		= ar rcs
 RM		= rm -f
 
 SRCS = 	cub3d.c \
-		game/init_game.c \
 		game/exit_game.c \
-		game/key_pressed.c \
-		game/mouse_moved.c \
+		game/handle_key_event.c \
+		game/handle_mouse_event.c \
+		game/init_game.c \
+		game/move.c \
 		parse/parse.c \
 		parse/parse_floor_ceiling.c \
 		parse/parse_map.c \

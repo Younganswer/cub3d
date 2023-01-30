@@ -24,6 +24,7 @@ typedef enum e_err
 typedef enum e_x_event
 {
 	ON_KEYDOWN = 2,
+	ON_KEYRELEASE = 3,
 	ON_MOUSEMOVE = 6,
 	ON_DESTROY = 17,
 }	t_x_event;
@@ -124,6 +125,7 @@ typedef struct	s_game
 	t_player	*player;
 	t_raycast	**raycast;
 	t_err		err;
+	t_bool		key_pressed[128];
 }	t_game;
 
 #endif

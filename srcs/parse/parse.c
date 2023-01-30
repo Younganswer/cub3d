@@ -1,4 +1,5 @@
 #include "../../incs/parse.h"
+#include "../../incs/game.h"
 #include "../../libs/libgnl/incs/get_next_line.h"
 #include <unistd.h>
 #include <fcntl.h>
@@ -15,10 +16,7 @@ t_bool	parse(t_game *game, char *file)
 	t_bool		ret;
 
 	if (fd == -1)
-	{
-		game->err = FILE_ERR;
-		return (FALSE);
-	}
+		return (set_err_code(game, FILE_ERR) == FALSE);
 	game->space = ft_calloc(sizeof(t_space), 1, "");
 	ret = (parse_texture(game, fd) && \
 		parse_floor_ceiling(game, fd) && \
