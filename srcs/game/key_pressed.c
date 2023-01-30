@@ -26,6 +26,10 @@ int	key_pressed(int keycode, t_game *game)
 		move(game, -dy, dx);
 	else if (keycode == KEY_D)
 		move(game, dy, -dx);
+	else if (keycode == KEY_LEFT)
+		mouse_moved(game->img->width / 2 - 5, 0, game);
+	else if (keycode == KEY_RIGHT)
+		mouse_moved(game->img->width / 2 + 5, 0, game);
 	return (0);
 }
 

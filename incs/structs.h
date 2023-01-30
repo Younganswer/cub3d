@@ -8,6 +8,19 @@
 # define SCREEN_WIDTH 1920
 # define SCREEN_HEIGHT 1080
 
+typedef enum e_err
+{
+	NO_ERR = 0,
+	MLX_ERR = 1,
+	IMG_ERR = 2,
+	FILE_ERR = 3,
+	IDENTIFIER_ERR = 4,
+	RGB_ERR = 5,
+	PLAYER_ERR = 6,
+	NON_ALLOWED_CHAR_ERR = 7,
+	MAP_BOARDER_ERR = 8,
+}	t_err;
+
 typedef enum e_x_event
 {
 	ON_KEYDOWN = 2,
@@ -23,6 +36,8 @@ typedef enum e_keycode
 	KEY_A = 0,
 	KEY_S = 1,
 	KEY_D = 2,
+	KEY_LEFT = 123,
+	KEY_RIGHT = 124,
 }	t_keycode;
 
 typedef enum	e_direction
@@ -108,6 +123,7 @@ typedef struct	s_game
 	t_worldmap	*worldmap;
 	t_player	*player;
 	t_raycast	**raycast;
+	t_err		err;
 }	t_game;
 
 #endif

@@ -37,6 +37,7 @@ SRCS = 	cub3d.c \
 		parse/parse_floor_ceiling.c \
 		parse/parse_map.c \
 		parse/parse_texture.c \
+		parse/validate_map.c \
 		raycast/raycast.c \
 		raycast/dda.c \
 		raycast/set_line.c \

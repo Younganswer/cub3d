@@ -7,20 +7,22 @@
 t_bool	parse(t_game *game, char *file);
 char	*get_next_line_which_is_not_empty(int fd);
 t_bool	check_file_extension(char *file, char *ext);
+t_bool	del_string(char **str);
 
 t_bool	parse(t_game *game, char *file)
 {
 	const int	fd = open(file, O_RDONLY);
 	t_bool		ret;
 
-	ret = FALSE;
 	if (fd == -1)
-		return (ret);
+	{
+		game->err = FILE_ERR;
+		return (FALSE);
+	}
 	game->space = ft_calloc(sizeof(t_space), 1, "");
-	if (parse_texture(game, fd) && \
+	ret = (parse_texture(game, fd) && \
 		parse_floor_ceiling(game, fd) && \
-		parse_map(game, fd))
-		ret = TRUE;
+		parse_map(game, fd));
 	close(fd);
 	return (ret);
 }
@@ -52,4 +54,17 @@ t_bool	check_file_extension(char *file, char *ext)
 	if (len < ext_len)
 		return (FALSE);
 	return (ft_strncmp(file + len - ext_len, ext, ext_len) == 0);
+}
+
+t_bool	del_string(char **str)
+{
+	char	**tmp;
+
+	if (str == NULL)
+		return (TRUE);
+	tmp = str;
+	while (*tmp)
+		free(*tmp++);
+	free(str);
+	return (TRUE);
 }

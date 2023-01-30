@@ -10,12 +10,10 @@ t_bool	parse_map(t_game *game, int fd)
 	t_bool	ret;
 	t_list	*tmp_map;
 
-	ret = FALSE;
 	tmp_map = NULL;
 	game->worldmap = ft_calloc(sizeof(t_worldmap), 1, "");
-	if (read_map(game->worldmap, &tmp_map, fd) && \
-		list_to_string_arr(game->worldmap, tmp_map))
-		ret = TRUE;
+	ret = (read_map(game->worldmap, &tmp_map, fd) && \
+		list_to_string_arr(game->worldmap, tmp_map));
 	ft_lstclear(&tmp_map, free);
 	return (ret);
 }

@@ -18,7 +18,8 @@ t_bool	init_game(t_game *game, char *file)
 	if (init_mlx(game) == FALSE || \
 		init_img(game) == FALSE || \
 		parse(game, file) == FALSE || \
-		init_player(game) == FALSE)
+		init_player(game) == FALSE || \
+		validate_map(game) == FALSE)
 		return (FALSE);
 	game->raycast = ft_calloc(sizeof(t_raycast *), SCREEN_WIDTH, "");
 	i = 0;
@@ -32,13 +33,11 @@ static t_bool	init_mlx(t_game *game)
 {
 	game->mlx = ft_calloc(sizeof(t_mlx), 1, "");
 	game->mlx->mlx = mlx_init();
-	if (game->mlx->mlx == NULL)
-		return (FALSE);
 	game->mlx->window = \
 		mlx_new_window(game->mlx->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
-	if (game->mlx->window == NULL)
-		return (FALSE);
-	return (TRUE);
+	if (game->mlx->mlx == NULL || game->mlx->window == NULL)
+		game->err = MLX_ERR;
+	return (game->err == 0);
 }
 
 static t_bool	init_img(t_game *game)
@@ -49,14 +48,15 @@ static t_bool	init_img(t_game *game)
 	game->img->img = mlx_new_image(
 			game->mlx->mlx, game->img->width, game->img->height);
 	if (game->img->img == NULL)
-		return (FALSE);
-	game->img->data = (int *) mlx_get_data_addr(
-			game->img->img, &game->img->bits_per_pixel,
-			&game->img->size_line, &game->img->endian
-			);
+		game->err = IMG_ERR;
+	else
+		game->img->data = (int *) mlx_get_data_addr(
+				game->img->img, &game->img->bits_per_pixel,
+				&game->img->size_line, &game->img->endian
+				);
 	if (game->img->data == NULL)
-		return (FALSE);
-	return (TRUE);
+		game->err = IMG_ERR;
+	return (game->err == 0);
 }
 
 static t_bool	init_player(t_game *game)
@@ -82,5 +82,6 @@ static t_bool	init_player(t_game *game)
 			return (TRUE);
 		}
 	}
+	game->err = PLAYER_ERR;
 	return (FALSE);
 }

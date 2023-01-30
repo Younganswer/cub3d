@@ -3,28 +3,27 @@
 
 t_bool			parse_floor_ceiling(t_game *game, int fd);
 static t_bool	set_color(size_t *color, char *line);
-static t_bool	del_string(char **str);
 
 t_bool	parse_floor_ceiling(t_game *game, int fd)
 {
 	t_space *const	space = game->space;
-	t_bool			ret;
 	size_t			i;
 	char			*line;
 
 	i = 0;
 	while (i++ < 2)
 	{
-		ret = TRUE;
 		line = get_next_line_which_is_not_empty(fd);
 		if (line == NULL)
 			return (FALSE);
-		if ((*line != 'C' && *line != 'F') || \
+		if (*line != 'C' && *line != 'F')
+			game->err = IDENTIFIER_ERR;
+		else if (
 			(*line == 'C' && !set_color(&space->ceiling_color, line + 2)) || \
 			(*line == 'F' && !set_color(&space->floor_color, line + 2)))
-			ret = FALSE;
+			game->err = RGB_ERR;
 		free(line);
-		if (ret == FALSE)
+		if (game->err != 0)
 			return (FALSE);
 	}
 	return (TRUE);
@@ -47,17 +46,4 @@ static t_bool	set_color(size_t *color, char *line)
 		*color = (*color << 8) + c;
 	}
 	return (del_string(rgb));
-}
-
-static t_bool	del_string(char **str)
-{
-	char	**tmp;
-
-	if (str == NULL)
-		return (TRUE);
-	tmp = str;
-	while (*tmp)
-		free(*tmp++);
-	free(str);
-	return (TRUE);
 }
