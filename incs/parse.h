@@ -18,6 +18,7 @@ t_bool	parse_map(t_game *game, int fd);
 
 // parse_texture.c
 t_bool	parse_texture(t_game *game, int fd);
+t_bool	texture_xpm_to_img(t_game *game);
 
 // validate_map.c
 t_bool	validate_map(t_game *game);

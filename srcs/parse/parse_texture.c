@@ -5,16 +5,14 @@
 #include <fcntl.h>
 
 t_bool			parse_texture(t_game *game, int fd);
+t_bool			texture_xpm_to_img(t_game *game);
 static t_bool	set_texture_file_path(t_game *game, int fd);
 static int		get_idx(char *dir);
-static t_bool	xpm_to_img(t_game *game);
 
 t_bool	parse_texture(t_game *game, int fd)
 {
 	game->space->walls = ft_calloc(sizeof(t_texture), 4, "");
-	return (set_texture_file_path(game, fd) && \
-		xpm_to_img(game)
-	);
+	return (set_texture_file_path(game, fd));
 }
 
 static t_bool	set_texture_file_path(t_game *game, int fd)
@@ -55,7 +53,7 @@ static int	get_idx(char *dir)
 	return (-1);
 }
 
-static t_bool	xpm_to_img(t_game *game)
+t_bool	texture_xpm_to_img(t_game *game)
 {
 	t_texture	*wall;
 	size_t		i;

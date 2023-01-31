@@ -15,11 +15,11 @@ t_bool	init_game(t_game *game, char *file)
 {
 	size_t	i;
 
-	if (init_mlx(game) == FALSE || \
-		init_img(game) == FALSE || \
-		parse(game, file) == FALSE || \
+	if (parse(game, file) == FALSE || \
 		init_player(game) == FALSE || \
-		validate_map(game) == FALSE)
+		validate_map(game) == FALSE || \
+		init_mlx(game) == FALSE || \
+		init_img(game) == FALSE)
 		return (FALSE);
 	game->raycast = ft_calloc(sizeof(t_raycast *), SCREEN_WIDTH, "");
 	i = 0;
@@ -57,7 +57,7 @@ static t_bool	init_img(t_game *game)
 			);
 	if (game->img->data == NULL)
 		return (set_err_code(game, IMG_ERR) == FALSE);
-	return (TRUE);
+	return (texture_xpm_to_img(game));
 }
 
 static t_bool	init_player(t_game *game)
