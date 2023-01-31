@@ -12,7 +12,7 @@ int	main(int argc, char **argv)
 	t_game *const	game = ft_calloc(sizeof(t_game), 1, "");
 
 	if (argc != 2)
-		return (0 < ft_putendl_fd("Usage: ./cub3d mapfile.cub", 1));
+		ft_exit_with_error("Usage: ./cub3d /path_to_map/map.cub", FILE_ERR);
 	if (init_game(game, argv[1]) == FALSE)
 		exit_with_error(game);
 	mlx_hook(game->mlx->window, ON_DESTROY, 0, exit_game, game);
