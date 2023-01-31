@@ -6,8 +6,7 @@ t_bool	set_err_code(t_game *game, t_err err_code);
 
 int	exit_game(t_game *game)
 {
-	(void) game;
-	exit(0);
+	exit(game->err);
 }
 
 t_bool	set_err_code(t_game *game, t_err err_code)

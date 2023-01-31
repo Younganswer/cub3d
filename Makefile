@@ -98,17 +98,17 @@ ${LIBMLX}: ${LIBGNL}
 
 clean:
 	@echo "Remove dependencies in ${NAME}"
-	@make -C ${LIBFT_DIR} clean
-	@make -C ${LIBGNL_DIR} clean
-	@make -C ${LIBMLX_DIR} clean
+	@${MAKE} -C ${LIBFT_DIR} clean
+	@${MAKE} -C ${LIBGNL_DIR} clean
+	@${MAKE} -C ${LIBMLX_DIR} clean
 	@rm -rf ${OBJS_DIR}
 
 
 fclean:
 	@echo "Remove dependencies in ${NAME}"
-	@make -C ${LIBFT_DIR} fclean
-	@make -C ${LIBGNL_DIR} fclean
-	@make -C ${LIBMLX_DIR} fclean
+	@${MAKE} -C ${LIBFT_DIR} fclean
+	@${MAKE} -C ${LIBGNL_DIR} fclean
+	@${MAKE} -C ${LIBMLX_DIR} fclean
 	@echo "Remove ${NAME}"
 	@rm -rf ${OBJS_DIR}
 	@${RM} ${NAME}
@@ -116,8 +116,8 @@ fclean:
 
 re:
 	@echo "Re-build ${NAME}"
-	@make fclean
-	@make all
+	@${MAKE} fclean
+	@${MAKE} all
 
 
 .PHONY: all clean fclean re bonus
