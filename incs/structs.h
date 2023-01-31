@@ -77,13 +77,13 @@ typedef struct	s_worldmap
 
 typedef struct	s_img
 {
-	void	*img;
-	int		*data;
-	int		width;
-	int		height;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
+	void			*img;
+	unsigned int	*data;
+	int				width;
+	int				height;
+	int				bits_per_pixel;
+	int				size_line;
+	int				endian;
 }	t_img;
 
 typedef struct	s_texture

@@ -68,7 +68,7 @@ t_bool	texture_xpm_to_img(t_game *game)
 				&wall->img->width, &wall->img->height);
 		if (wall->img->img == NULL)
 			return (set_err_code(game, FILE_ERR));
-		wall->img->data = (int *) mlx_get_data_addr(
+		wall->img->data = (unsigned int *) mlx_get_data_addr(
 				wall->img->img, &wall->img->bits_per_pixel,
 				&wall->img->size_line, &wall->img->endian);
 		if (wall->img->data == NULL)
