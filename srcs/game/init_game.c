@@ -76,7 +76,8 @@ static t_bool	init_player(t_game *game)
 			col = ft_strchr(game->worldmap->map[row], g_dir[i]);
 			if (col == NULL)
 				continue ;
-			game->player->pos = (t_coord){row, col - game->worldmap->map[row]};
+			game->player->pos
+				= (t_coord){row + 0.5, col - game->worldmap->map[row] + 0.5};
 			game->player->dir = (t_coord){g_dx[i], g_dy[i]};
 			game->player->plane = (t_coord){0.66 * g_dy[i], -0.66 * g_dx[i]};
 			*col = '0';

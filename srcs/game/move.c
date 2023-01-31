@@ -38,7 +38,7 @@ static double	get_cur_move_speed(t_game *game)
 	const int	num_of_pressed_keys = \
 		game->key_pressed[KEY_W] + game->key_pressed[KEY_S] + \
 		game->key_pressed[KEY_A] + game->key_pressed[KEY_D];
-	
+
 	if (1 < num_of_pressed_keys)
 		return (g_move_speed / sqrt(2));
 	return (g_move_speed);
