@@ -3,12 +3,10 @@
 
 # include "../libs/libft/incs/libft.h"
 
-// # define SCREEN_WIDTH 1280
-// # define SCREEN_HEIGHT 720
+# define SCREEN_WIDTH 1280
+# define SCREEN_HEIGHT 720
 //# define SCREEN_WIDTH 1920
 //# define SCREEN_HEIGHT 1080
-# define SCREEN_WIDTH (16 * 150)
-# define SCREEN_HEIGHT (9 * 150)
 
 typedef enum e_err
 {
