@@ -55,12 +55,6 @@ static t_bool	init_img(t_game *game)
 			game->img->img, &game->img->bits_per_pixel,
 			&game->img->size_line, &game->img->endian
 			);
-	ft_putnbr_fd(game->img->bits_per_pixel, 1);
-	ft_putchar_fd('\n', 1);
-	ft_putnbr_fd(game->img->size_line, 1);
-	ft_putchar_fd('\n', 1);
-	ft_putnbr_fd(game->img->endian, 1);
-	ft_putchar_fd('\n', 1);
 	if (game->img->data == NULL)
 		return (set_err_code(game, IMG_ERR) == FALSE);
 	return (texture_xpm_to_img(game));

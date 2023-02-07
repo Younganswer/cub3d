@@ -19,7 +19,7 @@ C_SRCS	:= mlx_xpm.c mlx_png.c mlx_string_put.c
 C_SRCS	:= ${addprefix ${SRCS_DIR}/, ${C_SRCS}}
 C_OBJS	:= ${C_SRCS:${SRCS_DIR}/%.c=${OBJS_DIR}/%.o}
 
-CC		:= gcc
+CC		:= cc
 CFLAGS	:= -O3
 
 NAME	:= libmlx.dylib
