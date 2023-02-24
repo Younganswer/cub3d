@@ -21,3 +21,7 @@
 	* map
 		* 0, 1, N, S, E, W
 		* map must be closed by walls
+<br/><br/><br/>
+
+## Result
+https://user-images.githubusercontent.com/55086725/221144165-8af36543-7d65-41eb-9f08-72174f04adbd.mp4
